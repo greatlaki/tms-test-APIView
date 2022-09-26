@@ -11,3 +11,11 @@ class ArticleView(APIView):
         # the many param informs the serializer that it will be serializing more than a single article.
         serializer = ArticleSerializer(articles, many=True)
         return Response({"articles": serializer.data})
+
+    def post(self, request):
+        article = request.data.get('articles')
+        # Create an article from the above data
+        serializer = ArticleSerializer(data=article)
+        if serializer.is_valid(raise_exception=True):
+            article_saved = serializer.save()
+        return Response({"success": "Article '{}' created successfully".format(article_saved.title)})
