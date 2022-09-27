@@ -19,7 +19,7 @@ class ArticleView(APIView):
         serializer = ArticleSerializer(data=article)
         if serializer.is_valid(raise_exception=True):
             article_saved = serializer.save()
-        return Response({"success": "Article '{}' created successfully".format(article_saved.title)})
+        return Response({"success": f"Article '{article_saved.title}' created successfully"})
 
     def put(self, request, pk):
         saved_article = get_object_or_404(Article.objects.all(), pk=pk)
@@ -28,7 +28,7 @@ class ArticleView(APIView):
         if serializer.is_valid(raise_exception=True):
             article_saved = serializer.save()
         return Response({
-            "success": "Article '{}' updated successfully".format(article_saved.title)
+            "success": f"Article '{article_saved.title}' updated successfully"
         })
 
     def delete(self, request, pk):
@@ -36,5 +36,5 @@ class ArticleView(APIView):
         article = get_object_or_404(Article.objects.all(), pk=pk)
         article.delete()
         return Response({
-            "message": "Article with id `{}` has been deleted.".format(pk)
+            "message": f"Article with id '{pk}' has been deleted."
         }, status=204)

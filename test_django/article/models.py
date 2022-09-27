@@ -6,7 +6,7 @@ class Author(models.Model):
     email = models.EmailField()
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
 class Article(models.Model):

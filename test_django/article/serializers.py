@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from test_django.article.models import Article
+from article.models import Article
 
 
 class ArticleSerializer(serializers.Serializer):
